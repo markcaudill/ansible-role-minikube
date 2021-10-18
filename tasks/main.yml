@@ -1,0 +1,16 @@
+---
+# tasks file for minikube
+
+- name: ensure {{ minikube_install_location }} exists
+  ansible.builtin.file:
+    path: "{{ minikube_install_location }}"
+    mode: "{{ minikube_install_location_mode }}"
+    state: directory
+  tags: [minikube, file]
+
+- name: ensure minikube is downloaded and installed
+  ansible.builtin.get_url:
+    url: "{{ minikube_download_url }}"
+    dest: "{{ minikube_binary }}"
+    mode: "{{ minikube_binary_mode }}"
+  tags: [minikube, get_url]

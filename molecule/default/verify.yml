@@ -1,0 +1,42 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: false
+  vars:
+    install_location: /root/.local/bin/minikube
+    minimum_bytes: 1
+    mode: 750
+  tasks:
+  - name: check that minikube binary exists
+    ansible.builtin.command: "stat {{ install_location }}"
+    register: minikube_binary
+    changed_when: false
+  - name: assert that minikube binary exists
+    assert:
+      that: minikube_binary.rc == 0
+
+  - name: check that minikube binary size >= {{ minimum_bytes }}
+    ansible.builtin.command: "stat --printf '%s' {{ install_location }}"
+    register: minikube_binary_size
+    changed_when: false
+  - name: assert that minikube binary size >= {{ minimum_bytes }}
+    assert:
+      that: minikube_binary_size.stdout|int >= {{ minimum_bytes }}
+
+  - name: check that minikube binary mode is {{ mode }}
+    ansible.builtin.command: "stat --printf '%a' {{ install_location }}"
+    register: minikube_binary_mode
+    changed_when: false
+  - name: assert that minikube binary mode is {{ mode }}
+    assert:
+      that: minikube_binary_mode.stdout == "{{ mode }}"
+
+  - name: get minikube version
+    ansible.builtin.command: "{{ install_location }} version"
+    register: minikube_version
+    changed_when: false
+  - name: display minikube version
+    debug:
+      msg: "{{ minikube_version.stdout }}"
