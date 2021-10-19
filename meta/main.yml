@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   author: markcaudill
+  role_name: minikube
   description: Install and Minikube
   license: MIT
   min_ansible_version: 2.1
