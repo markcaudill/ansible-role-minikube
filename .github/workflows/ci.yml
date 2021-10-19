@@ -2,6 +2,8 @@
 name: CI
 'on':
   pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
@@ -9,18 +11,9 @@ name: CI
     - cron: "0 0 * * 1"
 
 jobs:
-  test:
-    name: Test
+  molecule-test:
+    name: molecule test
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        distro:
-          - "geerlingguy/docker-centos7-ansible:latest"
-          - "geerlingguy/docker-centos8-ansible:latest"
-          - "geerlingguy/docker-debian10-ansible:latest"
-          - "geerlingguy/docker-debian11-ansible:latest"
-          - "geerlingguy/docker-ubuntu1804-ansible:latest"
-          - "geerlingguy/docker-ubuntu2004-ansible:latest"
 
     steps:
       - name: Check out the codebase.
@@ -41,5 +34,4 @@ jobs:
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
-          MOLECULE_DISTRO: ${{ matrix.distro }}
         working-directory: minikube

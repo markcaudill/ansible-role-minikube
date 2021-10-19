@@ -4,8 +4,62 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: instance
-    image: "${MOLECULE_DISTRO}"
+  - name: centos_7
+    image: markcaudill/ansible-centos:7
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: true
+  - name: centos_8
+    image: markcaudill/ansible-centos:8
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: true
+  - name: fedora_33
+    image: markcaudill/ansible-fedora:33
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: true
+  - name: fedora_34
+    image: markcaudill/ansible-fedora:34
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: true
+  - name: debian_9
+    image: markcaudill/ansible-debian:9
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: true
+  - name: debian_10
+    image: markcaudill/ansible-debian:10
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: true
+  - name: debian_11
+    image: markcaudill/ansible-debian:11
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: true
+  - name: ubuntu_16.04
+    image: markcaudill/ansible-ubuntu:16.04
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: true
+  - name: ubuntu_18.04
+    image: markcaudill/ansible-ubuntu:18.04
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: true
+  - name: ubuntu_20.04
+    image: markcaudill/ansible-ubuntu:20.04
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
