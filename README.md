@@ -1,5 +1,7 @@
-Role Name
-=========
+markcaudill.minikube
+====================
+
+[![CI](https://github.com/markcaudill/ansible-role-minikube/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/markcaudill/ansible-role-minikube/actions/workflows/ci.yml)
 
 This role installs [minikube](https://minikube.sigs.k8s.io/docs/)
 
